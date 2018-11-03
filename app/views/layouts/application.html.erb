@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CryptoBank</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav>
+      <% if user_signed_in? %>
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to 'Login', new_user_session_path %>
+      <% end %>
+    </nav>
+
+    <% flash.each do |type, message| %>
+      <div class='flash <%= type %>'>
+        <%= message %>
+      </div>
+    <% end %>
+
+    <%= yield %>
+  
+  </body>
+</html>
